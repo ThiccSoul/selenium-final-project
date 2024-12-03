@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="TestSuite" thread-count="1" parallel="methods" >
+    <test name="EdgeTest">
+        <parameter name="browser" value="Edge" />
+        <classes>
+            <class name="HolidayPageTests">
+                <methods>
+                    <include name="descendingOrderTest" />
+                    <include name="ascendingOrderTest" />
+                    <include name="filterTest" />
+                    <include name="priceRangeTest" />
+                </methods>
+            </class>
+            <class name="LandingPageTests">
+                <methods>
+                    <include name="activeCategoryTest" />
+                    <include name="logoTest" />
+                </methods>
+            </class>
+            <class name="MoviePageTests">
+                <methods>
+                    <include name="MoviePageTest" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="FirefoxTest">
+        <parameter name="browser" value="Firefox" />
+        <classes>
+            <class name="HolidayPageTests">
+                <methods>
+                    <include name="descendingOrderTest" />
+                    <include name="ascendingOrderTest" />
+                    <include name="filterTest" />
+                    <include name="priceRangeTest" />
+                </methods>
+            </class>
+            <class name="LandingPageTests">
+                <methods>
+                    <include name="activeCategoryTest" />
+                    <include name="logoTest" />
+                </methods>
+            </class>
+            <class name="MoviePageTests">
+                <methods>
+                    <include name="MoviePageTest" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="ChromeTest">
+        <parameter name="browser" value="Chrome" />
+        <classes>
+            <class name="HolidayPageTests">
+                <methods>
+                    <include name="descendingOrderTest" />
+                    <include name="ascendingOrderTest" />
+                    <include name="filterTest" />
+                    <include name="priceRangeTest" />
+                </methods>
+            </class>
+            <class name="LandingPageTests">
+                <methods>
+                    <include name="activeCategoryTest" />
+                    <include name="logoTest" />
+                </methods>
+            </class>
+            <class name="MoviePageTests">
+                <methods>
+                    <include name="MoviePageTest" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

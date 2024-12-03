@@ -1,4 +1,5 @@
 package baseConfig;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -14,6 +15,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
+
 import java.time.Duration;
 
 public class CrossBrowserTesting {
@@ -25,7 +27,7 @@ public class CrossBrowserTesting {
 
     @BeforeClass
     @Parameters("browser")
-    public void setUp(@Optional("chrome") String browser) {
+    public void setUp(@Optional("firefox") String browser) {
 
         driver = initializeDriver(browser);
         driver.manage().window().maximize();
@@ -53,7 +55,7 @@ public class CrossBrowserTesting {
     }
 
     @AfterClass
-    public void teardown(){
+    public void teardown() {
         driver.quit();
     }
 }

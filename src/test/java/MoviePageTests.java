@@ -4,13 +4,15 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
 import java.util.List;
+
 import static data.Constants.*;
 import static util.UtilMethods.*;
 
 public class MoviePageTests extends CrossBrowserTesting {
     @Test
-    public void MoviePageTest(){
+    public void MoviePageTest() {
         driver.get(SWOOP_PAGE);
 
         WebElement cookieAccept = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(COOKIE_ACCEPT_XPATH)));
@@ -20,13 +22,12 @@ public class MoviePageTests extends CrossBrowserTesting {
         movies.click();
 
         List<WebElement> movieTitles = extractMovieTitles(ACTUAL_MOVIES_XPATH);
-        js.executeScript(JS_CLICK,  movieTitles.getFirst());
+        js.executeScript(JS_CLICK, movieTitles.getFirst());
 
         String firstMovieTitle = movieTitles.getFirst().getText();
 
         WebElement caveaEastPoint = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(CAVEA_EAST_POINT_XPATH)));
         String caveaEastPointText = caveaEastPoint.getText();
-
 
         wait.until(ExpectedConditions.visibilityOf(caveaEastPoint));
         scrollToElement(caveaEastPoint);
@@ -34,7 +35,7 @@ public class MoviePageTests extends CrossBrowserTesting {
         List<WebElement> timeAndDate = driver.findElements(By.xpath(DATE_TIME));
 
         String time = timeAndDate.getFirst().getText();
-        String date = timeAndDate.getLast().getText().replaceAll("\\b0([1-9])\\b", "$1");;
+        String date = timeAndDate.getLast().getText().replaceAll("\\b0([1-9])\\b", "$1");
 
         try {
             WebElement lastElOfCavea = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(LAST_SESSION_OF_CAVEA_XPATH)));
@@ -74,7 +75,7 @@ public class MoviePageTests extends CrossBrowserTesting {
         Assert.assertEquals(time.trim(), dateAndTimePopupString[1].trim(), TIMES_ERR_MSG);
         Assert.assertTrue(dateAndTimePopupString[0].contains(date), DATES_ERR_MSG);
         Assert.assertEquals(caveaEastPointText, cinemaPopupName.getText(), CINEMA_ERR_MSG);
-        Assert.assertEquals(firstMovieTitle, moviePopupName.getText(),MOVIE_TITLE_ERR_MSG);
+        Assert.assertEquals(firstMovieTitle, moviePopupName.getText(), MOVIE_TITLE_ERR_MSG);
 
         WebElement emptySit = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(EMPTY_SEAT_CSS_SEL)));
         WebElement legendChartEmptySeat = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(LEGEND_CHART_XPATH)));
@@ -112,9 +113,8 @@ public class MoviePageTests extends CrossBrowserTesting {
         phoneNumberField.sendKeys("599870919");
         genderMale.click();
 
-
         WebElement errorFirstNameMessage = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(EMAIL_ERROR_MESSAGE_XPATH)));
 
-        Assert.assertTrue(errorFirstNameMessage.isDisplayed(),INVALID_EMAIL_ERR);
+        Assert.assertTrue(errorFirstNameMessage.isDisplayed(), INVALID_EMAIL_ERR);
     }
 }

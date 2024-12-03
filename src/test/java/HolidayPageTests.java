@@ -5,8 +5,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
 import java.util.Comparator;
 import java.util.List;
+
 import static data.Constants.*;
 import static util.UtilMethods.*;
 
@@ -37,12 +39,11 @@ public class HolidayPageTests extends CrossBrowserTesting {
         System.out.println("Maximum offer is: " + maxPrice + "₾");
 
         boolean isDescending = isListInDescendingOrder(allPrices);
-        if (isDescending){
+        if (isDescending) {
             System.out.println("price is in descending order");
-        }else{
+        } else {
             System.out.println("ordering is not correct");
         }
-
         Assert.assertEquals(allPrices.getFirst(), maxPrice, MAX_PRICE_ERR_MSG);
     }
 
@@ -71,13 +72,14 @@ public class HolidayPageTests extends CrossBrowserTesting {
         double minPrice = allPrices.stream().min(Comparator.naturalOrder()).orElse(0.0);
         System.out.println("Minimum offer is: " + minPrice + "₾");
 
-        if (isListInAscendingOrder(allPrices)){
+        if (isListInAscendingOrder(allPrices)) {
             System.out.println("price is in ascending order");
-        }else{
+        } else {
             System.out.println("ordering is not correct");
         }
         Assert.assertEquals(allPrices.getFirst(), minPrice, MIN_PRICE_ERR_MSG);
     }
+
     @Test
     public void filterTest() throws InterruptedException {
         driver.get(SWOOP_PAGE);
@@ -113,12 +115,12 @@ public class HolidayPageTests extends CrossBrowserTesting {
         wait.until(ExpectedConditions.visibilityOf(priceAscending));
         js.executeScript(JS_CLICK, priceAscending);
 
-        Thread.sleep(3000);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(ACTUAL_PRICES_XPATH)));
 
         List<Double> allPrices = extractPrices(ACTUAL_PRICES_XPATH, NEXT_BUTTON_XPATH);
 
         double leasExpensiveOffer = allPrices.stream().min(Comparator.naturalOrder()).orElse(0.0);
-        Assert.assertEquals(leasExpensiveOffer, allPrices.getFirst() );
+        Assert.assertEquals(leasExpensiveOffer, allPrices.getFirst());
     }
 
     @Test
@@ -127,8 +129,8 @@ public class HolidayPageTests extends CrossBrowserTesting {
 
         WebElement restBtn = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(REST_BUTTON_XPATH)));
         js.executeScript(JS_CLICK, restBtn);
-        WebElement priceRangeFrom = wait.until(ExpectedConditions.visibilityOfElementLocated (By.xpath(PRICE_RANGE_INPUT_FROM_XPATH)));
-        WebElement priceRangeTo = wait.until(ExpectedConditions.visibilityOfElementLocated (By.xpath(PRICE_RANGE_INPUT_TO_XPATH)));
+        WebElement priceRangeFrom = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PRICE_RANGE_INPUT_FROM_XPATH)));
+        WebElement priceRangeTo = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PRICE_RANGE_INPUT_TO_XPATH)));
 
         scrollToElement(priceRangeFrom);
 
@@ -140,8 +142,6 @@ public class HolidayPageTests extends CrossBrowserTesting {
 
         List<Double> allPrices = extractPrices(ACTUAL_PRICES_XPATH, NEXT_BUTTON_XPATH);
 
-        allPrices.forEach(price -> {
-            Assert.assertTrue(price >= 100 && price <= 200);
-        });
+        allPrices.forEach(price -> Assert.assertTrue(price >= 100 && price <= 200));
     }
 }

@@ -1,18 +1,17 @@
 package util;
+
 import baseConfig.CrossBrowserTesting;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
 import static data.Constants.JS_SCROLL_TO_ELEMENT;
-import static data.Constants.JS_SCROLL_TO_LOWEST;
 
 public class UtilMethods extends CrossBrowserTesting {
-    public static void scrollToTheLowest() {
-        js.executeScript(JS_SCROLL_TO_LOWEST);
-    }
 
     public static void scrollToElement(WebElement element) {
         js.executeScript(JS_SCROLL_TO_ELEMENT, element);
@@ -71,7 +70,6 @@ public class UtilMethods extends CrossBrowserTesting {
 
         return new ArrayList<>(movieTitleElements);
     }
-
 
 
 }

@@ -4,17 +4,18 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
 import static data.Constants.*;
 
 public class LandingPageTests extends CrossBrowserTesting {
     @Test
-    public void activeCategoryTest(){
+    public void activeCategoryTest() {
         driver.get(SWOOP_PAGE);
 
         WebElement category = driver.findElement(By.xpath(CATEGORY_XPATH));
         category.click();
 
-        WebElement categorySport =  wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(CATEGORY_SPORT_XPATH)));
+        WebElement categorySport = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(CATEGORY_SPORT_XPATH)));
         action.moveToElement(categorySport).perform();
 
         WebElement sportCarting = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(SPORT_CARTING_XPATH)));
@@ -33,7 +34,7 @@ public class LandingPageTests extends CrossBrowserTesting {
     }
 
     @Test
-    public void logoTest(){
+    public void logoTest() {
         driver.get(SWOOP_PAGE);
 
         WebElement restBtn = driver.findElement(By.xpath(REST_BUTTON_XPATH));
